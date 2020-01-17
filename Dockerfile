@@ -4,8 +4,8 @@ EXPOSE 8888
 WORKDIR /root
 
 RUN apt update && apt install -y git
+RUN echo bash > .profile && chmod +x .profile
 RUN /opt/intel/inteloneapi/intelpython/latest/bin/pip install jupyterlab
+RUN git clone https://github.com/intel/BaseKit-code-samples && git clone https://github.com/intel/HPCKit-code-samples
 
-CMD ["/usr/bin/git", "clone", "https://github.com/intel/BaseKit-code-samples"]
-CMD ["/usr/bin/git", "clone", "https://github.com/intel/HPCKit-code-samples"]
 CMD ["jupyter-lab", "--ip=0.0.0.0", "--allow-root"]
